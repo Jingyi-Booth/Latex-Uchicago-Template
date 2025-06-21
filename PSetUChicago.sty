@@ -39,6 +39,9 @@
 \usepackage{array}
 \usepackage{indentfirst}
 \usepackage{mathrsfs}
+
+\usepackage{caption}
+\usepackage{subcaption}
 \usepackage[dvipsnames]{xcolor}
 %\usepackage[bottom]{footmisc}
 \usepackage[shortlabels]{enumitem}
@@ -50,6 +53,14 @@
 \let\temp\rmdefault
 \usepackage{mathpazo}
 \usepackage{multirow}
+\usepackage{etoolbox}
+
+
+\renewcommand{\thesection}{\arabic{section}}
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\renewcommand{\thesubsubsection}{\thesubsection.\arabic{subsubsection}}
+
+
 \newtheorem{assumption}{Assumption}
 \newtheorem{proposition}{Proposition}
 \newtheorem{definition}{Definition}
@@ -63,23 +74,18 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rfoot{\thepage}
+\renewcommand{\headrulewidth}{0pt} 
 % \setlength\parindent{24pt}
 \setlength{\parindent}{0pt}
-\titleformat{\section}{\normalfont\Large\bfseries}{\arabic{section}. }{0pt}{}{}
-\titleformat{\subsection}[hang]{\normalfont\large\bfseries}{(\alph{subsection})}{2pt}{}{}
-\titleformat{\subsubsection}[hang]{\normalfont\normalsize\bfseries}{\Roman{subsubsection}.}{2pt}{}{}
 
-
-\lhead{\includegraphics[width=4cm]{UChicago.png}}
-\fancyhead[R]{\MySubject\\\MyProgram}
-\renewcommand{\thesubsection}{(\alph{subsection})}
-% \renewcommand{\thesubsubsection}{\Roman{subsubsection}}
+% \lhead{\includegraphics[width=4cm]{UChicago.png}}
+% \fancyhead[R]{\MySubject\\\MyProgram}
 % \numberwithin{equation}{section}
 
 \newcommand{\MakeMyTitle}{
 \begin{center}
-	\large{\textbf{\MyTitle}}\\
-	\MyDate\\
+	\LARGE{\textbf{\MyTitle}}\\
+	\Large{\MyDate}\\
 \end{center}
 }
 
@@ -108,3 +114,21 @@
 
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\V}{\mathbb{V}}
+
+\usepackage[most]{tcolorbox}
+\definecolor{main}{HTML}{5989cf}    % setting main color to be used
+\definecolor{sub}{HTML}{cde4ff}     % setting sub color to be used
+% colored box
+\newtcolorbox{boxH}{
+    colback = sub, 
+    colframe = main, 
+    boxrule = 0pt, 
+    leftrule = 6pt % left rule weight
+}
+\newtcolorbox{boxK}{
+    sharpish corners, % better drop shadow
+    boxrule = 0pt,
+    toprule = 4.5pt, % top rule weight
+    enhanced,
+    fuzzy shadow = {0pt}{-2pt}{-0.5pt}{0.5pt}{black!35} % {xshift}{yshift}{offset}{step}{options} 
+}
